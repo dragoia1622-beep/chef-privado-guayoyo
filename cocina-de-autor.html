@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111010">
+  <meta name="description" content="Explora la carta de cocina de autor de Chef Guayoyo.">
+  <title>Cocina de autor · Chef Guayoyo</title>
+  <link rel="icon" href="./assets/sello.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./barrett.css">
+  <link rel="stylesheet" href="./autor.css">
+  <script type="module" src="./autor.js"></script>
+</head>
+<body>
+  <a class="skip" href="#carta-autor">Saltar a la carta</a>
+  <header class="header">
+    <div class="wrap nav-row">
+      <a class="brand" href="./" aria-label="Chef Guayoyo, inicio">
+        <img src="./assets/logo-chef-guayoyo.webp" alt="" width="60" height="60">
+        <span><b>CHEF GUAYOYO</b><small>COCINA EN DIRECTO</small></span>
+      </a>
+      <a class="button secondary catalog-back" href="./#menus">Volver a menús</a>
+    </div>
+  </header>
+  <main>
+    <!-- BLOQUE 01 — Portada de la carta -->
+    <section class="catalog-hero">
+      <div class="wrap catalog-hero-inner">
+        <p class="eyebrow"><span class="signal"></span> CHEF GUAYOYO · AUTOR PREMIUM</p>
+        <h1>Cocina <em>de autor.</em></h1>
+        <p>Una carta de platos con raíces venezolanas. Explora las categorías y agrega a tu pedido los platos que te gustaría probar.</p>
+      </div>
+    </section>
+
+    <!-- BLOQUE 02 — Recetas por categoría -->
+    <section id="carta-autor" class="wrap catalog" aria-label="Carta por categorías">
+      <div class="catalog-toolbar" hidden>
+        <label for="buscar-platos">Buscar en la carta</label>
+        <input id="buscar-platos" type="search" placeholder="Por ejemplo, yuca, cacao o corvina" autocomplete="off">
+        <p id="catalog-count" role="status"></p>
+      </div>
+      <section id="mi-pedido" class="order-panel" aria-labelledby="catalog-order-title" hidden>
+        <div class="order-heading">
+          <h2 id="catalog-order-title">Mi pedido</h2>
+          <span id="catalog-order-count" class="order-count" role="status"></span>
+        </div>
+        <ul id="catalog-order-list" class="order-list"></ul>
+        <p id="catalog-order-empty" class="order-note">Pulsa «Agregar al pedido» en los platos que quieras consultar.</p>
+        <a id="review-order" class="button primary" href="./?menu=autor#mi-pedido">Revisar pedido y continuar <span class="arrow" aria-hidden="true"></span></a>
+      </section>
+      <div id="catalog-groups"></div>
+      <p id="catalog-empty" hidden>Prueba con otro ingrediente o nombre de plato.</p>
+      <noscript><p>Activa JavaScript para explorar la carta por categorías.</p></noscript>
+    </section>
+    <section class="contact">
+      <div class="wrap contact-inner">
+        <div>
+          <p class="eyebrow">DEGUSTACIÓN DE SIETE PASES</p>
+          <h2>Autor <em>Premium.</em></h2>
+          <p>Tus platos elegidos se incluirán en la solicitud. La selección definitiva se acuerda según la temporada, el evento y la disponibilidad.</p>
+        </div>
+        <a id="catalog-configure" class="button primary" href="./?menu=autor#configurador">Configurar Autor Premium <span class="arrow" aria-hidden="true"></span></a>
+      </div>
+    </section>
+  </main>
+  <a id="order-shortcut" class="button primary order-shortcut" href="#mi-pedido" hidden>Mi pedido <span id="order-shortcut-count"></span></a>
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="./"><img src="./assets/logo-chef-guayoyo.webp" alt="" width="42" height="42" loading="lazy"><span><b>CHEF GUAYOYO</b><small>MADRID · ESPAÑA</small></span></a>
+      <div class="footer-signature">
+        <img src="./assets/sello-barrett.webp" alt="Sello de Barrett Tecnología" width="60" height="60" loading="lazy">
+        <p>Diseñado por Barrett Tecnología — Sistema DRAGO-IA</p>
+      </div>
+      <div class="footer-links" role="navigation" aria-label="Información de Chef Guayoyo">
+        <a href="./appcc.html">Higiene y APPCC</a>
+        <a href="./aviso-legal.html">Aviso legal</a>
+      </div>
+    </div>
+  </footer>
+  <template id="category-template">
+    <details class="catalog-group">
+      <summary><h2></h2><span class="category-count"></span></summary>
+      <ul class="catalog-dishes"></ul>
+    </details>
+  </template>
+  <!-- BLOQUE 03 — Tarjetas y vista ampliada -->
+  <template id="dish-template">
+    <li class="catalog-dish">
+      <div class="dish-thumb" aria-hidden="true">
+        <div class="dish-photo"><img alt="" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="dish-card-content">
+        <h3><button type="button" class="dish-open" aria-haspopup="dialog"></button></h3>
+        <p></p>
+        <div class="dish-card-actions">
+          <button type="button" class="button secondary dish-select">Agregar al pedido</button>
+          <span class="dish-view" aria-hidden="true">Ver plato <span class="arrow"></span></span>
+        </div>
+      </div>
+    </li>
+  </template>
+  <dialog id="dish-dialog" aria-labelledby="dish-dialog-title" aria-describedby="dish-dialog-description">
+    <div class="dish-dialog-inner">
+      <button type="button" class="close" aria-label="Cerrar plato" autofocus>×</button>
+      <div class="dish-photo dialog-photo"><img alt="" decoding="async"></div>
+      <div class="dish-dialog-content">
+        <p id="dish-dialog-category" class="eyebrow"></p>
+        <h2 id="dish-dialog-title"></h2>
+        <p id="dish-dialog-description"></p>
+        <p class="dish-image-credit">Creada por el Chef Guayoyo</p>
+        <button id="dialog-dish-select" type="button" class="button primary dish-select">Agregar al pedido</button>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

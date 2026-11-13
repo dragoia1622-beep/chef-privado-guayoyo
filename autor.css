@@ -1,0 +1,174 @@
+/* BLOQUE 01 — Portada de la carta */
+.catalog-hero {
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(90deg, #190f11 42%, #190f11b8 62%, #190f1129), url('./assets/autor.webp?v=marca-1') right 49% / min(66%, 800px) auto no-repeat, #190f11;
+}
+.catalog-hero-inner { padding-block: clamp(55px, 8vw, 112px); }
+.catalog-hero h1 {
+  margin-block: 13px;
+  font-size: clamp(3.1rem, 8vw, 6.7rem);
+  letter-spacing: -.075em;
+  line-height: .95;
+}
+.catalog-hero p:not(.eyebrow) { max-width: 390px; color: var(--muted); }
+
+/* BLOQUE 02 — Buscador y categorías */
+.catalog { padding-block: 45px 65px; }
+.catalog-toolbar { margin-bottom: 19px; }
+.catalog-toolbar label { display: block; margin-bottom: 5px; font-weight: 700; }
+.catalog-toolbar input { max-width: 440px; }
+.order-shortcut {
+  position: fixed;
+  z-index: 3;
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  box-shadow: 0 4px 18px #110809b0;
+}
+.order-shortcut[hidden] { display: none; }
+#catalog-count, #catalog-empty { margin-top: 6px; color: var(--muted); font-size: .9rem; }
+.catalog-group {
+  margin-bottom: 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel);
+}
+.catalog-group[open] { border-color: #84524a; }
+.catalog-group summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 14px;
+  align-items: center;
+  gap: 14px;
+  min-height: 57px;
+  padding: 11px 17px;
+  list-style: none;
+}
+.catalog-group summary::-webkit-details-marker { display: none; }
+.catalog-group summary::after { color: var(--red); font-size: 1.1rem; content: "+"; }
+.catalog-group[open] summary::after { content: "−"; }
+.catalog-group h2 {
+  font-size: clamp(1.3rem, 3vw, 1.85rem);
+  letter-spacing: -.02em;
+  line-height: 1.14;
+  text-wrap: initial;
+}
+.category-count { color: var(--gold); font-size: .75rem; white-space: nowrap; }
+.catalog-dishes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 2px 10px 10px;
+  list-style: none;
+}
+@media (max-width: 960px) {
+  .catalog-dishes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .catalog-back { min-height: 42px; padding: 8px; font-size: .74rem; }
+  .catalog-hero {
+    background: linear-gradient(0deg, #190f11 10%, #190f1170), url('./assets/autor.webp?v=marca-1') center / cover no-repeat, #190f11;
+  }
+  .catalog-hero-inner { padding-block: 98px 26px; }
+  .catalog { padding-block: 28px 40px; }
+  .catalog-dishes { grid-template-columns: 1fr; }
+  .catalog-group summary { gap: 7px; padding-inline: 11px; }
+}
+
+/* BLOQUE 03 — Tarjetas ilustradas */
+.catalog-dish {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #21191a;
+  transition: border-color .2s, background-color .2s;
+}
+.catalog-dish h3 { font-size: 1.2rem; }
+.catalog-dish p { margin-top: 5px; color: var(--muted); font-size: .85rem; line-height: 1.48; }
+.catalog-dish[hidden] { display: none; }
+.catalog-dish:hover, .catalog-dish:focus-within {
+  border-color: #ad6a57;
+  background: #2a1d1f;
+}
+.dish-thumb {
+  position: relative;
+  aspect-ratio: 1.48;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.dish-thumb .dish-card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px;
+}
+.dish-open {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+.dish-open::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+}
+.dish-open:focus-visible { outline: none; }
+.catalog-dish:has(.dish-open:focus-visible) {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.dish-card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: auto; padding-top: 11px; }
+.dish-select { position: relative; z-index: 2; }
+.dish-card-actions .dish-select { min-height: 41px; padding: 7px 10px; font-size: .77rem; }
+.dish-select.dish-selected { border-color: var(--gold); }
+.dish-view {
+  color: var(--gold);
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+/* BLOQUE 04 — Modal de plato */
+#dish-dialog {
+  z-index: 100;
+  width: min(850px, calc(100% - 28px));
+}
+#dish-dialog::backdrop { background: #090606dc; }
+.dish-dialog-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  align-items: center;
+}
+.dish-dialog-inner .close {
+  z-index: 1;
+  border: 1px solid #a26555;
+  background: #241619;
+}
+.dialog-photo { align-self: start; }
+.dish-dialog-content { padding: clamp(16px, 4vw, 36px); }
+.dish-dialog-content h2 {
+  margin-block: 12px;
+  font-size: clamp(1.8rem, 4.1vw, 3.1rem);
+  letter-spacing: -.035em;
+  line-height: 1.04;
+  text-wrap: initial;
+}
+#dish-dialog-description { color: var(--muted); }
+.dish-image-credit {
+  margin-top: 20px;
+  color: var(--gold);
+  font-size: .75rem;
+}
+.dish-dialog-content .dish-select { margin-top: 12px; }
+@media (max-width: 640px) {
+  .dish-dialog-inner { grid-template-columns: 1fr; }
+  .dish-dialog-content h2 { margin-block: 8px; }
+  .dish-image-credit { margin-top: 12px; }
+}

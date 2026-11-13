@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111010">
+  <meta name="description" content="Chef Guayoyo. Cocina en directo en Madrid y alrededores. Explora los menús y calcula el presupuesto de tu cena privada.">
+  <title>Chef Guayoyo · Chef a domicilio en Madrid</title>
+  <link rel="icon" href="./assets/sello.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./barrett.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#principal">Saltar al contenido</a>
+  <header class="header">
+    <div class="wrap nav-row">
+      <a class="brand" href="#inicio" aria-label="Chef Guayoyo, inicio">
+        <img src="./assets/logo-chef-guayoyo.webp" alt="" width="60" height="60">
+        <span><b>CHEF GUAYOYO</b><small>COCINA EN DIRECTO</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="navegacion" aria-expanded="false" aria-label="Abrir navegación"><span></span><span></span></button>
+      <nav id="navegacion" aria-label="Principal">
+        <a href="#menus">Menús</a>
+        <a href="#experiencia">La experiencia</a>
+        <a href="#zona">Zona de servicio</a>
+        <a class="nav-cta" href="#configurador">Configurar servicio <span class="arrow" aria-hidden="true"></span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="principal">
+    <!-- BLOQUE 01 — Portada -->
+    <section id="inicio" class="hero">
+      <div class="hero-image" role="img" aria-label="Jesús Barreto, Chef Guayoyo, con chaqueta y gorro de chef"></div>
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="signal"></span> CHEF A DOMICILIO · MADRID</p>
+          <h1>Cocino en tu casa. <br><em>Tú disfrutas <br>de la mesa.</em></h1>
+          <p class="hero-description">Soy Jesús Barreto, Chef Guayoyo. Cocino en directo para tus invitados, con raíces venezolanas y sabor mediterráneo.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#configurador">Calcula tu experiencia <span class="arrow" aria-hidden="true"></span></a>
+            <a class="button secondary" href="#menus">Explora los menús <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <p class="hero-caption"><span></span> JESÚS BARRETO <i></i> CHEF GUAYOYO</p>
+      </div>
+    </section>
+    <div class="signature" role="navigation" aria-label="Accesos de la portada">
+      <div class="wrap signature-inner">
+        <a href="#experiencia"><span aria-hidden="true">01</span><b>Cocina en directo</b></a>
+        <a href="#menus"><span aria-hidden="true">02</span><b>Menús de 3 a 7 pases</b></a>
+        <a href="#zona"><span aria-hidden="true">03</span><b>Madrid y alrededores</b></a>
+        <a href="./cocina-de-autor.html#carta-autor"><span aria-hidden="true">04</span><b>Ver la carta</b></a>
+      </div>
+    </div>
+
+    <!-- BLOQUE 02 — Carta -->
+    <section id="menus" class="section wrap">
+      <p class="eyebrow">01 / LA CARTA</p>
+      <div class="section-intro">
+        <h2>Tres maneras de<br><em>reunirnos a la mesa.</em></h2>
+        <p>De una comida íntima a una degustación de siete pases. Los platos son ejemplos y los adapto a la temporada y a tu celebración.</p>
+      </div>
+      <div id="menu-cards" class="menu-grid"></div>
+      <article id="aperitivo" class="welcome-bites" aria-labelledby="aperitivo-title" hidden></article>
+      <div class="author-callout">
+        <div><p class="eyebrow">AUTOR PREMIUM</p><h3>Carta de cocina de autor</h3></div>
+        <a class="button secondary" href="./cocina-de-autor.html">Elegir platos por categoría <span class="arrow" aria-hidden="true"></span></a>
+      </div>
+      <p class="section-note">Precios orientativos. El configurador incluye el mínimo de servicio aplicable a cada menú.</p>
+      <noscript><p>Activa JavaScript para ver la carta y calcular tu experiencia.</p></noscript>
+    </section>
+
+    <!-- BLOQUE 03 — Presupuesto -->
+    <section id="configurador" class="section configuration">
+      <div class="wrap">
+        <p class="eyebrow">02 / TU EXPERIENCIA</p>
+        <div class="section-intro">
+          <h2>Diseña tu <em>servicio.</em></h2>
+          <p>Elige el menú, el tamaño de tu grupo y los extras. En «Mi pedido» puedes agregar los platos que te gustaría probar.</p>
+        </div>
+        <div class="config-grid">
+          <div class="config-controls">
+            <div class="control-block">
+              <label class="control-title" for="personas"><span>01</span> Número de personas</label>
+              <div class="guest-row">
+                <p>De 2 a 20 comensales.<br><a href="#contacto" data-contact>Consulta para grupos más grandes.</a></p>
+                <div class="stepper">
+                  <button id="menos" type="button" aria-label="Quitar una persona">−</button>
+                  <input id="personas" type="number" min="2" max="20" value="6" step="1" inputmode="numeric" aria-label="Número de personas">
+                  <button id="mas" type="button" aria-label="Añadir una persona">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="control-block">
+              <label class="control-title" for="menu"><span>02</span> Tipo de menú</label>
+              <select id="menu"></select>
+            </div>
+            <fieldset class="control-block extras-block">
+              <legend class="control-title"><span>03</span> Extras opcionales</legend>
+              <div id="extras"></div>
+            </fieldset>
+          </div>
+          <aside class="estimate" aria-labelledby="estimate-title">
+            <p class="eyebrow"><span class="signal"></span> ESTIMACIÓN EN DIRECTO</p>
+            <h3 id="estimate-title">Tu presupuesto</h3>
+            <div class="estimate-body" aria-live="polite" aria-atomic="true">
+              <dl id="breakdown"></dl>
+              <div class="estimate-total"><span>Total estimado</span><strong id="total">—</strong></div>
+              <p id="per-person"></p>
+            </div>
+            <p class="estimate-note">El desplazamiento, si aplica, se cotiza según el municipio. El importe final y la disponibilidad se confirman al revisar tu solicitud.</p>
+            <section id="mi-pedido" class="order-panel" aria-labelledby="order-title">
+              <div class="order-heading">
+                <h3 id="order-title">Mi pedido</h3>
+                <span id="order-count" class="order-count" role="status"></span>
+              </div>
+              <ul id="order-list" class="order-list"></ul>
+              <p id="order-empty" class="order-note">Elige los platos que quieras incluir en tu solicitud.</p>
+              <p id="order-note" class="order-note" hidden>Son tus platos preferidos. El chef confirmará la selección y el presupuesto final.</p>
+              <a id="choose-dishes" class="text-link" href="./cocina-de-autor.html#carta-autor">Elegir platos de la carta <span class="arrow" aria-hidden="true"></span></a>
+            </section>
+            <button id="request" class="button primary" type="button">Preparar solicitud por WhatsApp <span class="arrow" aria-hidden="true"></span></button>
+            <p id="order-reset-status" class="order-note" role="status"></p>
+            <details id="previous-order-photos" hidden>
+              <summary>Fotos del último encargo</summary>
+              <p id="previous-photo-status" class="order-note" role="status"></p>
+              <div id="previous-photo-downloads" class="photo-actions"></div>
+            </details>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 04 — Cómo funciona y equipamiento -->
+    <section id="experiencia" class="section wrap">
+      <p class="eyebrow">03 / DE LA COCINA A LA MESA</p>
+      <div class="section-intro">
+        <h2>Así funciona.</h2>
+        <p>Yo me encargo de la compra, la cocina y el emplatado. Tú pones la mesa y eliges con quién compartirla.</p>
+      </div>
+      <ol class="process">
+        <li><span>01</span><h3>Cuéntame tu plan</h3><p>Elige un menú y prepara tu consulta con la fecha, el municipio y el número de invitados.</p></li>
+        <li><span>02</span><h3>Cerramos los detalles</h3><p>Revisamos el espacio, las preferencias y los alérgenos. Te confirmo la disponibilidad y el presupuesto.</p></li>
+        <li><span>03</span><h3>Cocino en tu casa</h3><p>Llevo los ingredientes, cocino y sirvo cada pase. Al terminar recojo y limpio mi zona de trabajo.</p></li>
+      </ol>
+      <div class="equipment">
+        <div><p class="eyebrow">EQUIPAMIENTO INCLUIDO</p><h3>Lo que llevo conmigo</h3></div>
+        <ul><li>Cuchillos, tablas y utensilios de cocina</li><li>Batería básica, termómetro y material de emplatado</li><li>Transporte de ingredientes y material de limpieza</li></ul>
+        <p>En tu casa necesito una zona de trabajo, agua y acceso a la cocina. Revisamos previamente el equipamiento disponible y la vajilla que usaremos.</p>
+      </div>
+    </section>
+
+    <!-- BLOQUE 05 — Cobertura, preguntas y contacto -->
+    <section id="zona" class="section zone">
+      <div class="wrap zone-grid">
+        <div><p class="eyebrow">04 / ZONA DE SERVICIO</p><h2>Madrid <em>y alrededores.</em></h2><p>Salgo desde Alcorcón y atiendo Madrid capital y municipios cercanos. Indica tu municipio para valorar el desplazamiento y confirmar la cobertura.</p><a href="#contacto" class="text-link" data-contact>Consultar mi municipio <span class="arrow" aria-hidden="true"></span></a></div>
+        <div class="zone-list"><p>ÁREA INICIAL DE SERVICIO</p><ul><li>Madrid capital</li><li>Alcorcón</li><li>Móstoles</li><li>Leganés</li><li>Getafe</li><li>Pozuelo de Alarcón</li><li>Otros municipios, a consultar</li></ul></div>
+      </div>
+    </section>
+    <section id="preguntas" class="section wrap faq-grid">
+      <div><p class="eyebrow">05 / ANTES DE RESERVAR</p><h2>Preguntas <em>frecuentes.</em></h2></div>
+      <div class="faq">
+        <details><summary>¿Qué incluye el precio base?</summary><p>Ingredientes del menú, preparación en tu cocina, emplatado y recogida de la zona de trabajo. Los extras y el desplazamiento se desglosan por separado.</p></details>
+        <details><summary>¿Puedo pedir cambios por alergias o intolerancias?</summary><p>Indícame qué ingredientes debemos evitar para que pueda revisar el menú, el espacio y el riesgo de contacto cruzado antes de confirmar el servicio.</p></details>
+        <details><summary>¿Y si somos más de 20 personas?</summary><p>Cuéntame cuántos sois, qué tipo de evento preparas y cómo es el espacio. Los grupos de más de 20 personas se presupuestan aparte.</p></details>
+        <details><summary>¿La estimación confirma mi reserva?</summary><p>Es una referencia para preparar tu consulta. La reserva se confirma después de acordar la fecha, la disponibilidad y el presupuesto definitivo.</p></details>
+      </div>
+    </section>
+    <section id="contacto" class="contact">
+      <div class="wrap contact-inner">
+        <div><p class="eyebrow">06 / CONTACTO</p><h2>Hablemos de tu <em>celebración.</em></h2><p>Cuéntame qué tienes en mente. Puedes preparar tu consulta y abrir WhatsApp para enviármela.</p></div>
+        <button type="button" class="button primary" data-contact>Preparar consulta <span class="arrow" aria-hidden="true"></span></button>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#inicio"><img src="./assets/logo-chef-guayoyo.webp" alt="" width="42" height="42" loading="lazy"><span><b>CHEF GUAYOYO</b><small>MADRID · ESPAÑA</small></span></a>
+      <div class="footer-signature">
+        <img src="./assets/sello-barrett.webp" alt="Sello de Barrett Tecnología" width="60" height="60" loading="lazy">
+        <p>Diseñado por Barrett Tecnología — Sistema DRAGO-IA</p>
+      </div>
+      <div class="footer-links" role="navigation" aria-label="Información de Chef Guayoyo">
+        <a href="./appcc.html">Higiene y APPCC</a>
+        <a href="./aviso-legal.html">Aviso legal</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BLOQUE 06 — Solicitud local -->
+  <dialog id="booking" aria-labelledby="booking-title">
+    <div class="dialog-inner">
+      <button id="close-dialog" class="close" type="button" aria-label="Cerrar">×</button>
+      <p class="eyebrow">CHEF GUAYOYO · CONTACTO</p>
+      <h2 id="booking-title">Prepara tu solicitud</h2>
+      <p id="booking-estimate" class="booking-estimate"></p>
+      <p>Cuéntame qué te gustaría pedir. Podrás revisar el mensaje antes de abrir WhatsApp y enviarlo desde allí.</p>
+      <form id="booking-form" method="dialog">
+        <div class="form-grid">
+          <label>Nombre <input name="nombre" required maxlength="80" autocomplete="name"></label>
+          <label>Correo electrónico <small>(opcional)</small><input name="correo" type="email" maxlength="120" autocomplete="email"></label>
+          <label>Fecha deseada <input name="fecha" type="date" required></label>
+          <label>Municipio <input name="municipio" required maxlength="100" autocomplete="address-level2"></label>
+        </div>
+        <label>¿Qué más te gustaría pedir? <small>(opcional)</small><textarea name="detalles" rows="3" maxlength="600" placeholder="Cambios de menú, extras u horario"></textarea></label>
+        <section class="booking-dishes" aria-labelledby="booking-dishes-title">
+          <h3 id="booking-dishes-title">Platos de la carta <small>(opcional)</small></h3>
+          <ul id="booking-dish-list" class="order-list" hidden></ul>
+          <button id="open-booking-catalog" class="button secondary" type="button" aria-haspopup="dialog" aria-controls="booking-catalog">Ver carta y agregar platos <span class="arrow" aria-hidden="true"></span></button>
+        </section>
+        <button type="submit" class="button primary">Revisar mensaje <span class="arrow" aria-hidden="true"></span></button>
+      </form>
+      <div id="draft-panel" hidden>
+        <label for="draft">Borrador listo para revisar</label>
+        <textarea id="draft" rows="8" readonly></textarea>
+        <section id="photo-order" class="photo-order" aria-labelledby="photo-order-title" hidden>
+          <h3 id="photo-order-title">Pedido con fotos</h3>
+          <p>Para enviar las imágenes, comparte en WhatsApp y elige el chat de <strong>+34 689 345 235</strong>. También puedes descargarlas y adjuntarlas en ese chat.</p>
+          <p id="photo-order-status" role="status"></p>
+          <div class="photo-actions">
+            <button id="share-order" class="button primary" type="button" hidden>Compartir pedido con fotos</button>
+            <span id="photo-downloads"></span>
+          </div>
+        </section>
+        <div class="draft-actions">
+          <a id="whatsapp-draft" class="button primary" target="_blank" rel="noopener noreferrer">Abrir WhatsApp <span class="arrow" aria-hidden="true"></span></a>
+          <button id="copy-draft" class="button secondary" type="button">Copiar borrador</button>
+          <a id="download-draft" class="button secondary" download="solicitud-chef-guayoyo.txt">Descargar</a>
+          <button id="edit-draft" class="button secondary" type="button">Editar datos</button>
+        </div>
+        <p id="draft-status" role="status"></p>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="booking-catalog" aria-labelledby="booking-catalog-title">
+    <div class="dialog-inner">
+      <p class="eyebrow">CHEF GUAYOYO · CARTA</p>
+      <h2 id="booking-catalog-title">Elige tus platos</h2>
+      <p>Agrega los platos que te gustaría pedir. El chef confirmará la selección y el presupuesto final.</p>
+      <label for="booking-catalog-category">Categoría</label>
+      <select id="booking-catalog-category"></select>
+      <div class="booking-catalog-actions">
+        <span id="booking-catalog-count" class="order-count" role="status"></span>
+        <button id="close-booking-catalog" class="button primary" type="button">Volver a la consulta</button>
+      </div>
+      <ul id="booking-catalog-items" class="booking-catalog-grid"></ul>
+    </div>
+  </dialog>
+  <template id="booking-dish-card">
+    <li class="booking-dish-card">
+      <div class="dish-photo" aria-hidden="true"><img alt="" loading="lazy" decoding="async"></div>
+      <h3></h3>
+      <button class="button secondary" type="button"></button>
+    </li>
+  </template>
+</body>
+</html>
